@@ -20,12 +20,13 @@
   display: flex;
   margin: 0 auto;
   background: $white;
-
+  width: 100%;
   .product-img {
     img {
       width: 680px;
       height: 480px;
     }
+    margin-top: 32px;
     margin-right: 32px;
   }
 
