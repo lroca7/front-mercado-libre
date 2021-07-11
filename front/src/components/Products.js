@@ -18,6 +18,12 @@ const Products = (props) => {
 
   const [data, setData] = useState([]);
 
+  const getDetailProduct = (id) => {
+    history.push({
+      pathname: `/items/${id}`
+    });
+  }
+
   useEffect(() => {
     const query = history.location.search;
     const url = API + query;
@@ -34,23 +40,23 @@ const Products = (props) => {
 
   return (
     <>
-      <div className='breadcrumb'>Algo > algo > algo</div>
+      <div className='breadcrumb'>Algo - algo - algo</div>
       <div className='list-products'>
         {data.length  > 0 && (
           <div className='products'>
             {data.map(product => {
-              return <div className='product'>
-                  <div className='product-img'>
-                    <img src={product.picture} alt='Imagen de producto'/>
-                  </div>
-                  <div className='product-info'>
-                    <p className='price'>${product.price.amount}</p>
-                    <p className='title'>{product.title}</p>
-                  </div>
-                  <div className='product-city'>
-                    <p className='city'>Cartagena</p>
-                  </div>
+              return <div className='product' onClick={() => getDetailProduct(product.id)}>
+                <div className='product-img'>
+                  <img src={product.picture} alt='Imagen de producto'/>
                 </div>
+                <div className='product-info'>
+                  <p className='price'>${product.price.amount}</p>
+                  <p className='title'>{product.title}</p>
+                </div>
+                <div className='product-city'>
+                  <p className='city'>Cartagena</p>
+                </div>
+              </div>
             })
           }
           </div>

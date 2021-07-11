@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route , Switch} from 'react-router-dom';
 import Search from "./components/Search";
 import Products from "./components/Products";
+import DetailProduct from './components/DetailProduct';
 import './App.scss';
 
 function App() {
@@ -13,6 +14,10 @@ function App() {
           <Route exact path="/items/search">
             <Search />
             <Products />
+          </Route>
+          <Route exact path="/items/:id">
+            <Search />
+            <DetailProduct />
           </Route>
         </Switch>
       </Router>
