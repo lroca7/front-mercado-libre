@@ -36,8 +36,8 @@ const DetailProduct = (props) => {
     <>
       <div className='breadcrumb'>Algo - algo - algo</div>
       {(data !== undefined && data !== null) && (
-        <div className='product'>        
-          <div className='detail-product'>
+        <div className='product-detail'>        
+          <div className='detail'>
             <div className='product-img'>
               <img src={data.picture} alt='Imagen de producto'/>
             </div>   

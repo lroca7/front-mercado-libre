@@ -8,18 +8,17 @@
   padding: 16px 0;
 }
 
-.product {
+.product-detail {
   display: flex;
   margin: 0 auto;
   width: 80%;
   background: $white;
   flex-direction: column;
 }
-.detail-product {
+.detail {
 
   display: flex;
   margin: 0 auto;
-  width: 80%;
   background: $white;
 
   .product-img {
@@ -27,6 +26,7 @@
       width: 680px;
       height: 480px;
     }
+    margin-right: 32px;
   }
 
   .product-info {
