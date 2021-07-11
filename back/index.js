@@ -38,9 +38,11 @@ app.get("/api/items", (req, res) => {
         return nItem;
       });
 
+      const categories = data.filters[0].values[0].path_from_root;
+
       const nData = {
         author,
-        categories: [],
+        categories: categories,
         items
       }
 

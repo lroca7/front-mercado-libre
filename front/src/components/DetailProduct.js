@@ -5,10 +5,13 @@ import './styles/DetailProduct.scss';
 
 const DetailProduct = (props) => { 
 
+  const history = useHistory();
+
   const API = 'http://localhost:3000/api/items';
 
   const [data, setData] = useState(null);
-  
+  const [categories, setCategories] = useState([]);
+
   const { id }= useParams();
 
   useEffect(() => {
@@ -18,13 +21,33 @@ const DetailProduct = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setData(data.item)
-      });
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    
+    setCategories(history.location.state.categories);
+
   }, [id]);
 
 
   return (
     <>
-      <div className='breadcrumb'>Algo - algo - algo</div>
+      <div className='breadcrumb'>
+        {
+          categories.length > 0 && (
+            
+            categories.map((category, i) => {
+              if (categories.length !== i + 1) {
+                return category.name + ' > ';
+              } else {
+                return category.name;
+              }
+              
+            })
+          )
+        }
+      </div>
       {(data !== undefined && data !== null) && (
         <div className='product-detail'>        
           <div className='detail'>

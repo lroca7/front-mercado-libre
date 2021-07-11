@@ -11,10 +11,12 @@ const Products = (props) => {
   const API = 'http://localhost:3000/api/items';
 
   const [data, setData] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const getDetailProduct = (id) => {
     history.push({
-      pathname: `/items/${id}`
+      pathname: `/items/${id}`,
+      state: { categories: categories }
     });
   }
 
@@ -26,6 +28,10 @@ const Products = (props) => {
         .then((response) => response.json())
         .then((data) => {
           setData(data.items)
+          setCategories(data.categories)
+        })
+        .catch(error => {
+          console.error(error)
         });
     }
   }, [history.location.search]);
@@ -33,7 +39,21 @@ const Products = (props) => {
 
   return (
     <>
-      <div className='breadcrumb'>Algo - algo - algo</div>
+      <div className='breadcrumb'>
+        {
+          categories.length > 0 && (
+            
+            categories.map((category, i) => {
+              if (categories.length !== i + 1) {
+                return category.name + ' > ';
+              } else {
+                return category.name;
+              }
+              
+            })
+          )
+        }
+      </div>
       <div className='list-products'>
         {data.length  > 0 && (
           <div className='products'>
