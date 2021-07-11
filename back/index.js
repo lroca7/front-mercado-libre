@@ -53,6 +53,75 @@ app.get("/api/items", (req, res) => {
 
 });
 
+const getItem = async (id) => {
+
+  const url = `${API}/items/${id}`;
+
+  const responseItem = await fetch(url, {
+    method: 'GET'
+  })
+  .catch(error => 
+    console.log('Ha ocurrido un error con la petición: ' + error.message)
+  );
+
+  const item = await responseItem.json();
+
+  return item;
+}
+
+const getItemDescription = async (id) => {
+
+  const url = `${API}/items/${id}/description`;
+
+  const response = await fetch(url, {
+    method: 'GET'
+  })
+  .catch(error => 
+    console.error('Ha ocurrido un error con la petición: ' + error.message)
+  );
+
+  const description = await response.json();
+
+  return description;
+}
+
+app.get("/api/items/:id", (req, res)=> {
+  
+  const id = req.params.id;
+
+  Promise.all([
+    getItem(id), getItemDescription(id)]
+  ).then((data) => {
+    const item = data[0];
+    const description = data[1];
+
+    const nItem = {
+      id: item.id,
+      title: item.title,
+      price: {
+        currency: item.currency_id,
+        amount: item.price,
+        decimals: null,
+      },
+      picture: item.thumbnail,
+      condition: item.condition,
+      free_shipping: item.shipping.free_shipping,
+      sold_quantity: item.sold_quantity,
+      description: description.plain_text
+    }
+
+    const nData = {
+      author,
+      item: nItem
+    }
+
+    res.send(nData)
+
+  }).catch(error => {
+    console.error('Ha ocurrido un error: ' + error.message)
+  })
+
+});
 
 
 app.listen(3000, () => console.log('Servidor listo ...'));
