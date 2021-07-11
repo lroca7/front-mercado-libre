@@ -1,0 +1,51 @@
+@import "../../variables.scss";
+.breadcrumb {
+  color: $mediumGrey;
+  margin-left: 10%;
+  width: 80%;
+  text-align: left;
+  padding: 16px 0;
+}
+.list-products {
+  margin-bottom: 100px;
+}
+.products {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 80%;
+  background: $white;
+  .product {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $ligthGrey;
+    .product-img {
+      margin: 16px;
+      img {
+        width: 180px;
+        height: 180px;
+        border-radius: 4px;
+      }
+    }
+    .product-info {
+      padding: 0 16px;
+      text-align: left;
+      width: 100%;
+      .price {
+        font-size: 24px;
+      }
+      .title {
+        font-size: 18px;
+        width: 60%;
+      }
+    }
+    .product-city{
+      padding: 20px 16px;
+      .city {
+        font-size: 12px;
+      }
+    }
+  }
+ 
+}
