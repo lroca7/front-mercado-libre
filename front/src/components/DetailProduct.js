@@ -1,18 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-
 import { useHistory, useParams } from 'react-router-dom';
-
 import './styles/DetailProduct.scss';
 
-
-import logo from '../assets/Logo_ML.png'
-import iconSearch from '../assets/ic_Search.png'
-
 const DetailProduct = (props) => { 
-
-  const history = useHistory();
-  const refTextSearch = useRef(null);
 
   const API = 'http://localhost:3000/api/items';
 
@@ -26,7 +17,6 @@ const DetailProduct = (props) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        debugger
         setData(data.item)
       });
   }, [id]);

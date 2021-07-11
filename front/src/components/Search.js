@@ -15,7 +15,6 @@ const Search = (props) => {
   const refTextSearch = useRef(null);
 
   const searchItems = () => {
-    console.log(refTextSearch)
     const textSearch = refTextSearch.current.value;
 
     history.push({
